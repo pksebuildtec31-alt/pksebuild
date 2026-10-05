@@ -1,0 +1,227 @@
+.section {
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Section background image ── */
+.bgImage {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/high-scaffolding-structure-under-construction-beam-2025-06-17-22-45-40-utc-scaled.webp');
+  background-size: cover;
+  background-position: top center;
+  z-index: 0;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(240, 240, 238, 0.88);
+  z-index: 1;
+}
+
+/* ── Heading ── */
+.header {
+  margin-bottom: 50px;
+}
+
+.header h2 {
+  color: var(--color-dark-blue);
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+}
+
+/* ── Frame with corner bracket borders ── */
+.frameWrap {
+  position: relative;
+  padding: 0 0 24px 0;
+}
+
+/* Top-left corner bracket */
+.frameWrap::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -20px;
+  width: 56px;
+  height: 56px;
+  border-top: 2px solid #000000;
+  border-left: 2px solid #000000;
+  pointer-events: none;
+}
+
+/* Bottom-right corner bracket */
+.frameWrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -20px;
+  width: 56px;
+  height: 56px;
+  border-bottom: 2px solid #000000;
+  border-right: 2px solid #000000;
+  pointer-events: none;
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* ── Card ── */
+.card {
+  position: relative;
+  padding: 40px 40px 50px;
+  overflow: hidden;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.22);
+}
+
+.dark  { background: #2e2520; }
+.light { background: #d5bda2; }
+
+/* Light card: solid overlay #8B8B8B */
+.light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #8B8B8B;
+  opacity: 0.45;
+  z-index: 0;
+}
+
+/* Dark card: as.webp bg image fading top → bottom */
+.dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to bottom, rgba(30, 22, 16, 0.55) 0%, rgba(10, 6, 4, 0.85) 100%),
+    url('/images/as.webp');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+/* ── Slide content — slides in from right ── */
+.cardInner {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+  animation: slideInRight 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* Dark card inner bordered box */
+.dark .cardInner {
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 30px;
+}
+
+.light .cardInner {
+  padding: 0;
+}
+
+/* ── Stars ── */
+.stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.stars svg {
+  width: 18px;
+  height: 18px;
+  fill: #f5c518;
+}
+
+/* ── Quote text ── */
+.quote {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+.dark  .quote { color: rgba(255,255,255,0.85); }
+.light .quote { color: #3a3028; }
+
+/* ── Reviewer ── */
+.reviewer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,0.3);
+  color: #fff;
+}
+
+.dark  .avatar { background: var(--color-red); }
+.light .avatar { background: var(--color-dark-blue); }
+
+.name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.dark  .name { color: #fff; }
+.light .name { color: #3a3028; }
+
+.role {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.dark  .role { color: rgba(255,255,255,0.6); }
+.light .role { color: var(--color-red); }
+
+/* ── Decorative quote mark ── */
+.quoteIcon {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1;
+  opacity: 0.18;
+}
+
+.quoteIcon svg {
+  width: 60px;
+  height: 48px;
+}
+
+.dark  .quoteIcon svg { fill: #fff; }
+.light .quoteIcon svg { fill: #3a3028; }
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .frameWrap::before,
+  .frameWrap::after {
+    display: none;
+  }
+}

@@ -1,0 +1,178 @@
+/* ── Banner ── */
+.hero {
+  position: relative;
+  margin-top: var(--header-height);
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #1a2a3a;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/steptodown.com165454.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 42, 58, 0.62);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.heroBreadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #e0c99a;
+  font-size: 14px;
+}
+
+.heroBreadcrumb a { color: #e0c99a; text-decoration: none; transition: color 0.2s; }
+.heroBreadcrumb a:hover { color: #fff; }
+.heroBreadcrumb span { color: #e0c99a; }
+
+/* ── Content Section ── */
+.section {
+  padding: 70px 0 80px;
+  background: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+/* ── Left text ── */
+.headingBlue {
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 900;
+  color: var(--color-dark-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.05;
+  margin-bottom: 0;
+}
+
+.headingRed {
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 900;
+  color: var(--color-red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.05;
+  margin-bottom: 28px;
+}
+
+.body {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #1a1a2e;
+  margin-bottom: 20px;
+}
+
+/* ── Right image ── */
+.imageCol {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+}
+
+/* ── Comprehensive Supply section ── */
+.supplySection {
+  padding: 70px 0 80px;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+.supplyHeading {
+  text-align: center;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 900;
+  color: var(--color-dark-blue);
+  line-height: 1.25;
+  margin-bottom: 56px;
+}
+
+.supplyHeading .red { color: var(--color-red); }
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card {
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.cardImage {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.cardImage img {
+  transition: transform 0.45s ease;
+}
+
+.card:hover .cardImage img {
+  transform: scale(1.05);
+}
+
+.cardBody {
+  padding: 30px 24px 36px;
+  text-align: center;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-dark-blue);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.cardText {
+  font-size: 14px;
+  line-height: 1.85;
+  color: #1a1a2e;
+}
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .grid { grid-template-columns: 1fr; gap: 36px; }
+  .imageCol { height: 300px; }
+  .cardsGrid { grid-template-columns: 1fr; gap: 24px; }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .cardsGrid { grid-template-columns: repeat(2, 1fr); }
+}

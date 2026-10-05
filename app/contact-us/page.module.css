@@ -1,0 +1,358 @@
+/* ── Banner ── */
+.hero {
+  position: relative;
+  margin-top: var(--header-height);
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #1a2a3a;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/high-rise-building-under-construction-2025-02-12-18-37-37-utc-1.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 42, 58, 0.62);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.heroBreadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #e0c99a;
+  font-size: 14px;
+}
+
+.heroBreadcrumb a { color: #e0c99a; text-decoration: none; }
+.heroBreadcrumb a:hover { color: #fff; }
+.heroBreadcrumb span { color: #e0c99a; }
+
+/* ── Info Cards Row ── */
+.infoRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: -1px;
+}
+
+.infoCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 32px;
+  background: var(--color-dark-blue);
+  border-right: 1px solid rgba(255,255,255,0.08);
+  cursor: default;
+  transition: background 0.35s, transform 0.35s;
+  position: relative;
+  overflow: hidden;
+}
+
+.infoCard::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-red);
+  transform: scaleX(0);
+  transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.infoCard:hover { background: #112240; transform: translateY(-4px); }
+.infoCard:hover::before { transform: scaleX(1); }
+
+.infoIcon {
+  width: 56px;
+  height: 56px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: background 0.35s, transform 0.35s;
+}
+
+.infoCard:hover .infoIcon {
+  background: var(--color-red);
+  transform: scale(1.1) rotate(5deg);
+}
+
+.infoIcon svg { width: 24px; height: 24px; fill: #fff; }
+
+.infoLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-red);
+  margin-bottom: 10px;
+}
+
+.infoValue {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+}
+
+.infoValue a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.infoValue a:hover { color: #fff; }
+
+/* ── Main content: form + offices ── */
+.mainSection {
+  padding: 80px 0 90px;
+  background: #f7f8fa;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 50px;
+  align-items: start;
+}
+
+/* ── Form card ── */
+.formCard {
+  background: #fff;
+  padding: 48px 44px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  animation: fadeUp 0.7s ease 0.1s both;
+}
+
+.formHeading {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 900;
+  color: var(--color-dark-blue);
+  margin-bottom: 6px;
+}
+
+.formHeading .red { color: var(--color-red); }
+
+.formSubtitle {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 36px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Floating label field */
+.field {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  padding: 14px 0 10px;
+  font-size: 15px;
+  color: #1a1a2e;
+  background: transparent;
+  outline: none;
+  transition: border-color 0.3s;
+  font-family: inherit;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.field textarea { min-height: 110px; }
+
+.field input:focus,
+.field textarea:focus { border-bottom-color: var(--color-red); }
+
+.field label {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  font-size: 14px;
+  color: #999;
+  pointer-events: none;
+  transition: top 0.25s, font-size 0.25s, color 0.25s;
+}
+
+.field input:focus ~ label,
+.field input:not(:placeholder-shown) ~ label,
+.field textarea:focus ~ label,
+.field textarea:not(:placeholder-shown) ~ label {
+  top: -8px;
+  font-size: 11px;
+  color: var(--color-red);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.fieldLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-red);
+  transition: width 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.field input:focus ~ .fieldLine,
+.field textarea:focus ~ .fieldLine { width: 100%; }
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-red);
+  color: #fff;
+  border: none;
+  padding: 16px 40px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.submitBtn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.12);
+  transform: translateX(-100%);
+  transition: transform 0.35s;
+}
+
+.submitBtn:hover { background: #b02020; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(180,30,30,0.35); }
+.submitBtn:hover::after { transform: translateX(0); }
+.submitBtn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+.successBox {
+  padding: 28px 32px;
+  background: #f0faf4;
+  border-left: 4px solid #22c55e;
+  margin-top: 20px;
+  animation: fadeUp 0.5s ease both;
+}
+
+.successBox strong { color: #15803d; font-size: 16px; }
+.successBox p { color: #555; font-size: 14px; margin-top: 8px; }
+
+/* ── Offices side ── */
+.officesSide {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeUp 0.7s ease 0.2s both;
+}
+
+.officeCard {
+  background: #fff;
+  padding: 28px 28px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border-top: 3px solid var(--color-red);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.officeCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+}
+
+.officeTitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-dark-blue);
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.officeItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 13.5px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.officeItem:last-child { margin-bottom: 0; }
+
+.officeItem svg { width: 17px; height: 17px; fill: var(--color-red); flex-shrink: 0; margin-top: 2px; }
+
+.officeItem a { color: #444; text-decoration: none; transition: color 0.2s; }
+.officeItem a:hover { color: var(--color-red); }
+
+.mapWrap {
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.mapWrap iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .mainGrid { grid-template-columns: 1fr; }
+  .officesSide { flex-direction: row; flex-wrap: wrap; }
+  .officeCard { flex: 1; min-width: 260px; }
+  .mapWrap { width: 100%; }
+}
+
+@media (max-width: 767px) {
+  .infoRow { grid-template-columns: 1fr; }
+  .infoCard { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .formRow { grid-template-columns: 1fr; }
+  .formCard { padding: 32px 24px; }
+  .officesSide { flex-direction: column; }
+}

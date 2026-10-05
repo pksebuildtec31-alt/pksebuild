@@ -1,0 +1,228 @@
+/* ── Banner ── */
+.hero {
+  position: relative;
+  margin-top: var(--header-height);
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #1a2a3a;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/telescopic-prop.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 42, 58, 0.62);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.heroBreadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #e0c99a;
+  font-size: 14px;
+}
+
+.heroBreadcrumb a { color: #e0c99a; text-decoration: none; transition: color 0.2s; }
+.heroBreadcrumb a:hover { color: #fff; }
+.heroBreadcrumb span { color: #e0c99a; }
+
+/* ── Content Section ── */
+.section {
+  padding: 70px 0 80px;
+  background: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* ── Left: red-framed large + overlapping small ── */
+.imageCol {
+  position: relative;
+  height: 620px;
+}
+
+/* Red border frame around the large image */
+.imgFrame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 510px;
+  background: var(--color-red);
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Inner container so the fill image respects the red padding */
+.imgFrameInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Small image overlapping bottom-left */
+.imgSmall {
+  position: absolute;
+  bottom: 66px;
+  left: 0;
+  width: 52%;
+  height: 200px;
+  overflow: hidden;
+  z-index: 2;
+  border: 8px solid #fff;
+}
+
+/* ── Right: text ── */
+.contentCol {
+  padding-top: 6px;
+}
+
+.headingBlue {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 900;
+  color: var(--color-dark-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+
+.headingRed {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 900;
+  color: var(--color-red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  margin-bottom: 26px;
+}
+
+.boldPara {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.85;
+  color: #1a1a2e;
+  margin-bottom: 28px;
+}
+
+.featuresHeading {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-dark-blue);
+  margin-bottom: 18px;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.featureList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 15px;
+  color: #1a1a2e;
+  line-height: 1.7;
+}
+
+.checkIcon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  fill: var(--color-red);
+}
+
+/* ── Technical details section ── */
+.techSection {
+  padding: 70px 0 80px;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 60px;
+  align-items: center;
+}
+
+.techBody {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #1a1a2e;
+  margin-bottom: 20px;
+}
+
+.techList {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.techList li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  line-height: 1.5;
+}
+
+.techImage {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .grid { grid-template-columns: 1fr; gap: 36px; }
+  .imageCol { height: 400px; }
+  .imgFrame { height: 310px; }
+  .imgSmall { height: 160px; width: 55%; }
+  .techGrid { grid-template-columns: 1fr; gap: 36px; }
+  .techImage { height: 300px; }
+}

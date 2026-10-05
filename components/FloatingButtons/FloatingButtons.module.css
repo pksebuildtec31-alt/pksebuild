@@ -1,0 +1,61 @@
+.wrap {
+  position: fixed;
+  right: 0;
+  bottom: 120px;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px 0 0 50px;
+  overflow: hidden;
+  max-width: 50px;
+  transition: max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+}
+
+.expanded {
+  max-width: 220px;
+}
+
+.hidden {
+  max-width: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.iconWrap {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconWrap svg {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+}
+
+.label {
+  padding-right: 20px;
+  white-space: nowrap;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.enquiry {
+  background: var(--color-red);
+}
+
+.whatsapp {
+  background: #25D366;
+}

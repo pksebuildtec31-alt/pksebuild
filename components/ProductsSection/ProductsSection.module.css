@@ -1,0 +1,231 @@
+/* ── Section split background ── */
+/* Section bg = gray (bottom half). topArea bg = white (top half). */
+.section {
+  background: #8b8b8b;
+}
+
+.topArea {
+  background: #f5f5f5;
+  padding: 150px 0 260px; /* extra bottom padding so cards overlap into white */
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+
+/* Faint construction bg image on white top area */
+.topArea::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/high-rise-building-under-construction-2025-02-12-18-37-37-utc-1.webp');
+  background-size: cover;
+  background-position: top center;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.topGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 60px;
+  align-items: center;
+  padding-bottom: 80px;
+}
+
+.topLeft h2 {
+  color: var(--color-dark-blue);
+  font-size: 45px;
+  margin-bottom: 16px;
+}
+
+.topDesc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text);
+  max-width: 580px;
+}
+
+.red { color: var(--color-red); }
+
+.topRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* ── Cards straddle the white/gray boundary ── */
+.cardsArea {
+  /* No background — section's gray (#c8c8c8) shows through */
+  margin-top: -240px; /* pull cards up 240px into the white topArea */
+  padding: 0 0 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* White frame around each card */
+.cardFrame {
+  background: #fff;
+  padding: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.cardFrame:hover {
+  box-shadow: 0 8px 36px rgba(0,0,0,0.2);
+  transform: translateY(-4px);
+}
+
+/* Image container */
+.cardInner {
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+}
+
+/* Hover overlay — hidden below card, slides up on hover */
+.cardOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 42, 77, 0.88);
+  padding: 24px 20px;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cardFrame:hover .cardOverlay {
+  transform: translateY(0);
+}
+
+.cardOverlayTitle {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.cardOverlayDesc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+}
+
+/* ── Modal ── */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal {
+  background: #fff;
+  max-width: 800px;
+  width: 100%;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalClose {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: #555;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 1;
+}
+
+.modalClose:hover { color: #000; }
+
+.modalGrid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+}
+
+.modalImg {
+  position: relative;
+  min-height: 420px;
+}
+
+.modalContent {
+  padding: 40px 40px 40px 36px;
+}
+
+.modalTitle {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.modalSubtitle {
+  font-size: 13px;
+  color: var(--color-text);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.modalDesc {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.modalDivider {
+  height: 1px;
+  background: #eee;
+  margin: 14px 0;
+}
+
+.modalContact {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  color: #555;
+}
+
+.modalLabel {
+  font-weight: 700;
+  color: var(--color-primary);
+  min-width: 52px;
+}
+
+.modalContact a {
+  color: #555;
+  transition: color 0.2s;
+}
+
+.modalContact a:hover { color: var(--color-red); }
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .topGrid { grid-template-columns: 1fr; gap: 24px; }
+  .cardsGrid { grid-template-columns: 1fr; }
+  .cardInner { height: 320px; }
+  .modalGrid { grid-template-columns: 1fr; }
+  .modalImg { min-height: 260px; }
+}

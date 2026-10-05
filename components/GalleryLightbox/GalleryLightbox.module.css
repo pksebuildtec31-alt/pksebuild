@@ -1,0 +1,136 @@
+/* ── Thumbnail grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.thumb {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #ccc;
+}
+
+.thumb img {
+  transition: transform 0.45s ease;
+}
+
+.thumb:hover img {
+  transform: scale(1.07);
+}
+
+.thumbOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.thumb:hover .thumbOverlay {
+  opacity: 1;
+}
+
+/* ── Lightbox backdrop ── */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Counter ── */
+.counter {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+/* ── Image wrapper ── */
+.imgWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 90vw;
+  max-height: 88vh;
+}
+
+.lightboxImg {
+  display: block;
+  max-width: 90vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ── Nav buttons ── */
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+  line-height: 1;
+  width: 56px;
+  height: 72px;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.navBtn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.navLeft  { left: 0; }
+.navRight { right: 0; }
+
+/* ── Close button ── */
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  z-index: 2;
+  line-height: 1;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+
+.closeBtn:hover { color: #ddd; }
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 575px) {
+  .grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .thumb { height: 160px; }
+  .navBtn { width: 40px; height: 56px; font-size: 2rem; }
+  .navLeft  { left: 6px; }
+  .navRight { right: 6px; }
+}

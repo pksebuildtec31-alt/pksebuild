@@ -1,0 +1,69 @@
+/* ── Banner ── */
+.hero {
+  position: relative;
+  margin-top: var(--header-height);
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #1a2a3a;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/construction-site-with-foundation-work-underway-in-2025-05-16-04-22-55-utc.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 42, 58, 0.62);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.heroBreadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #e0c99a;
+  font-size: 14px;
+}
+
+.heroBreadcrumb a { color: #e0c99a; text-decoration: none; transition: color 0.2s; }
+.heroBreadcrumb a:hover { color: #fff; }
+.heroBreadcrumb span { color: #e0c99a; }
+
+/* ── Blog card image ── */
+.cardImg {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.cardImg img {
+  transition: transform 0.45s ease;
+}
+
+.cardImg:hover img {
+  transform: scale(1.05);
+}

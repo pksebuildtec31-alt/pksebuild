@@ -1,0 +1,319 @@
+/* ── Banner ── */
+.hero {
+  position: relative;
+  margin-top: var(--header-height);
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #1a2a3a;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/scaffold-on-construction-site-view-from-below-2024-09-23-02-10-16-utc-scaled.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 42, 58, 0.62);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.heroBreadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #e0c99a;
+  font-size: 14px;
+}
+
+.heroBreadcrumb a {
+  color: #e0c99a;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.heroBreadcrumb a:hover { color: #fff; }
+.heroBreadcrumb span { color: #e0c99a; }
+
+/* ── Content Section ── */
+.section {
+  padding: 70px 0 80px;
+  background: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* ── Left: overlapping image composition ── */
+.imageCol {
+  position: relative;
+  height: 660px;
+}
+
+.imgLarge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 520px;
+  overflow: hidden;
+}
+
+/* Small image sits in front at bottom-left, overlapping the large image */
+.imgSmall {
+  position: absolute;
+  bottom: 108px;
+  left: 0;
+  width: 63%;
+  height: 230px;
+  overflow: hidden;
+  z-index: 1;
+  border: solid 10px #fff;
+}
+
+/* ── Right: text ── */
+.contentCol {
+  padding-top: 4px;
+}
+
+.tagline {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-dark-blue);
+  margin-bottom: 10px;
+  letter-spacing: 0.2px;
+}
+
+.headingBlue {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 900;
+  color: var(--color-dark-blue);
+  line-height: 1.15;
+  margin-bottom: 2px;
+}
+
+.headingRed {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 900;
+  color: var(--color-red);
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+
+.body {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #1a1a2e;
+  margin-bottom: 28px;
+}
+
+.featuresHeading {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-dark-blue);
+  margin-bottom: 18px;
+}
+
+/* ── Feature list ── */
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.featureList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 15px;
+  color: #1a1a2e;
+  line-height: 1.7;
+}
+
+.checkIcon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  fill: var(--color-red);
+}
+
+/* ── Locking device section ── */
+.lockSection {
+  background: #7A7A7A;
+  padding: 60px 0;
+}
+
+.lockGrid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.lockImage {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  margin: 0 auto;
+}
+
+.lockText {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.85;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.lockBtn {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* ── Cuplock 2 Parts section ── */
+.partsSection {
+  padding: 70px 0 80px;
+  background: #fff;
+}
+
+.partsHeading {
+  text-align: center;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  color: var(--color-dark-blue);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 56px;
+}
+
+.partsHeading .red { color: var(--color-red); }
+
+.partsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.partCol {}
+
+.partBadge {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 28px;
+}
+
+.partBadgeRed  { background: var(--color-red); }
+.partBadgeBlue { background: var(--color-dark-blue); }
+
+.partSubheading {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-dark-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+}
+
+.partImage {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 28px;
+}
+
+.partBody {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #1a1a2e;
+}
+
+/* ── Couplers section ── */
+.couplerSection {
+  padding: 70px 0 80px;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+.couplerH2 {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--color-dark-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+
+.couplerH3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-dark-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 36px 0 14px;
+}
+
+.couplerBody {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #1a1a2e;
+  margin-bottom: 10px;
+}
+
+.couplerList {
+  list-style: disc;
+  padding-left: 22px;
+  margin: 12px 0 0;
+}
+
+.couplerList li {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #1a1a2e;
+  margin-bottom: 6px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .grid { grid-template-columns: 1fr; gap: 36px; }
+  .imageCol { height: 440px; }
+  .imgLarge { height: 340px; }
+  .imgSmall { height: 180px; width: 60%; }
+  .lockGrid { grid-template-columns: 1fr; gap: 24px; }
+  .lockImage { height: 240px; }
+  .partsGrid { grid-template-columns: 1fr; gap: 48px; }
+}

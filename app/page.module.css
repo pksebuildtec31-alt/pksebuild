@@ -1,0 +1,627 @@
+/* ── Build with Strength ─────────────────────────────── */
+.buildSection {
+  overflow: hidden;
+  background: #111; /* dark fallback so no white bleeds through */
+}
+
+.buildGrid {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  min-height: 640px;
+}
+
+.buildContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px 80px 80px;
+  background: #f5f5f5;
+}
+
+.buildContent h2 {
+  font-size: 45px;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: var(--color-dark-blue);
+}
+
+.buildContent p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 32px;
+}
+
+.buildContent a.btn {
+  display: inline-block;
+  width: 197px;
+  text-align: center;
+}
+
+/* ── Right panel: base image + 5 hover-reveal full-width images ── */
+.imagePanel {
+  position: relative;
+  min-height: 640px;
+  overflow: hidden;
+}
+
+/* Always-visible base image (z-index 0) */
+.basePanelImg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Full-width reveal images — cover entire panel, hidden by default */
+.fullImg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 0.55s ease,
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
+}
+
+/* Transparent hover-trigger zones — sit above images (z-index 3) */
+.panelZone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20%;
+  cursor: pointer;
+  z-index: 3;
+}
+
+/*
+  :has() — when zone N is hovered, reveal fullImg N at full panel width.
+  Child order in .imagePanel:
+    nth-child(1)  = basePanelImg
+    nth-child(2)  = fullImg zone-0
+    nth-child(3)  = fullImg zone-1
+    nth-child(4)  = fullImg zone-2
+    nth-child(5)  = fullImg zone-3
+    nth-child(6)  = fullImg zone-4
+    nth-child(7)  = panelZone i=0
+    nth-child(8)  = panelZone i=1
+    nth-child(9)  = panelZone i=2
+    nth-child(10) = panelZone i=3
+    nth-child(11) = panelZone i=4
+*/
+.imagePanel:has(.panelZone:nth-child(7):hover)  .fullImg:nth-child(2),
+.imagePanel:has(.panelZone:nth-child(8):hover)  .fullImg:nth-child(3),
+.imagePanel:has(.panelZone:nth-child(9):hover)  .fullImg:nth-child(4),
+.imagePanel:has(.panelZone:nth-child(10):hover) .fullImg:nth-child(5),
+.imagePanel:has(.panelZone:nth-child(11):hover) .fullImg:nth-child(6) {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── About Us + Stats ────────────────────────────────── */
+.aboutSection {
+  padding: 80px 0;
+  background-image: url('/images/steptodown.com348346.webp');
+  background-size: cover;
+  background-position: top center;
+  background-attachment: scroll;
+  position: relative;
+}
+
+.aboutSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #f5f5f5f7;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+.aboutTitle {
+  color: var(--color-dark-blue);
+  font-size: 45px;
+  margin-bottom: 24px;
+}
+
+.aboutCard {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+}
+
+.aboutCardOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 25, 20, 0.72);
+  z-index: 1;
+}
+
+.aboutCardContent {
+  position: relative;
+  z-index: 2;
+  padding: 36px 32px 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.yearsText {
+  font-family: var(--font-bebas);
+  font-size: clamp(2.6rem, 4vw, 3.8rem);
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.aboutCardDesc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 20px;
+}
+
+.learnMoreLink {
+  display: inline-block;
+  width: 197px;
+  text-align: center;
+  padding: 14px 36px;
+  background: var(--color-red);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 3px solid var(--color-red);
+  transition: background 0.3s, color 0.3s;
+}
+.learnMoreLink:hover {
+  background: transparent;
+  color: var(--color-red);
+}
+
+/* Stats right column */
+.statsRight {
+  padding-top: 20px;
+}
+
+.statsRight h2 {
+  color: var(--color-dark-blue);
+  font-size: 45px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.dividerLine {
+  width: 100%;
+  height: 1px;
+  background: #ddd;
+  margin-bottom: 20px;
+}
+
+.statsDesc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 36px;
+}
+
+.statBoxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.statBox {
+  padding: 30px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.statDark {
+  background: var(--color-dark-blue);
+}
+
+.statLight {
+  background: #fff;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.statNum {
+  font-family: var(--font-bebas);
+  font-size: 3rem;
+  color: #fff;
+  line-height: 1;
+}
+
+.statNumDark {
+  color: var(--color-primary);
+}
+
+.statLbl {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.statLblDark {
+  color: var(--color-text);
+}
+
+/* ── Why Choose Us ───────────────────────────────────── */
+.whySection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+
+.whyImageCol {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Video fills the left column exactly like an image */
+.whyVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.whyContentCol {
+  background: #e6e6e6;
+  padding: 36px 50px 36px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.whyContentCol h2 {
+  color: var(--color-dark-blue);
+  font-size: 45px;
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+/* Cards fill remaining height equally */
+.whyCards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.whyCard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 20px;
+  flex: 1;
+  transition: background 0.3s ease;
+  cursor: default;
+}
+
+.whyCardDark {
+  background: var(--color-dark-blue);
+}
+
+.whyCardRed {
+  background: var(--color-red);
+}
+
+/* All cards turn red on hover */
+.whyCard:hover {
+  background: var(--color-red) !important;
+}
+
+.whyCardIcon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.whyCardIcon svg {
+  width: 32px;
+  height: 32px;
+  fill: #fff;
+}
+
+.whyCardIcon i {
+  font-size: 32px;
+  color: #fff;
+  line-height: 1;
+}
+
+.whyCardText {
+  flex: 1;
+}
+
+.whyCardTitle {
+  font-family: var(--font-heading);
+  font-size: 27px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.whyCardDesc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+}
+
+/* ── Products (Built Strong) ─────────────────────────── */
+.productsSection {
+  padding: 60px 0 0;
+  background: #f5f5f5;
+}
+
+.productsTop {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.productsTop h2 {
+  color: var(--color-dark-blue);
+  font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+}
+
+.productsTopRight {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.productsTopRight p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.productCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.productCard {
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+  border: 4px solid #f5f5f5;
+}
+
+.productCardOverlayBottom {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(39,34,30,0.5) 0%, transparent 60%);
+  z-index: 1;
+}
+
+.productCardOverlayFull {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 42, 77, 0.65);
+  z-index: 1;
+}
+
+.productCardLabel {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+
+.productCardLabel h4 {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.productCardLabel p {
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ── How We Work ─────────────────────────────────────── */
+.howSection {
+  padding: 80px 0 90px;
+  background: #e8e8e8;
+}
+
+.howHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.howHeader h2 {
+  color: var(--color-dark-blue);
+  font-size: 45px;
+}
+
+.howHeader p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--color-text);
+}
+
+.howGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.howCard {
+  position: relative;
+  background: #aeaeae;
+  padding: 50px 30px 50px;
+  border: 1px solid rgba(0,0,0,0.1);
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.howCard:hover {
+  background: #9e9e9e;
+  transform: scale(1.04);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.howCardActive {
+  background: #9e9e9e;
+}
+
+.howNum {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-family: var(--font-bebas);
+  font-size: 3.8rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.howIcon {
+  margin-bottom: 24px;
+  margin-top: 8px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.howIcon svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--color-red);
+  fill: none;
+  stroke-width: 1.4;
+}
+
+.howTitle {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-dark-blue);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.howDesc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 991px) {
+  .buildGrid {
+    grid-template-columns: 1fr;
+  }
+  .buildContent {
+    padding: 60px 40px;
+    background: #f5f5f5;
+  }
+  .imagePanel {
+    min-height: 420px;
+  }
+  .aboutGrid {
+    grid-template-columns: 1fr;
+  }
+  .whySection {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .whyImageCol {
+    height: 360px;
+  }
+  .whyVideo {
+    height: 360px;
+  }
+  .whyContentCol {
+    padding: 50px 40px;
+    height: auto;
+  }
+  .howGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .productsTop {
+    grid-template-columns: 1fr;
+  }
+  .productCards {
+    grid-template-columns: 1fr;
+  }
+  .productCard {
+    height: 300px;
+  }
+  .howHeader {
+    grid-template-columns: 1fr;
+  }
+  .howCardActive {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .buildContent {
+    padding: 50px 24px;
+  }
+  .howGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 575px) {
+  .howGrid {
+    grid-template-columns: 1fr;
+  }
+  .statBoxes {
+    grid-template-columns: 1fr;
+  }
+}
