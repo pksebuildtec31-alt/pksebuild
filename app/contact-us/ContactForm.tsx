@@ -1,12 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './page.module.css';
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '', website: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+
+  const submittingRef = useRef(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm(f => ({ ...f, [e.target.name]: e.target.value }));
@@ -14,6 +16,9 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Ref guard: state updates are async, so rapid double clicks could slip past `status`
+    if (submittingRef.current) return;
+    submittingRef.current = true;
     setStatus('sending');
     try {
       const res = await fetch('/api/contact', {
@@ -21,9 +26,13 @@ export default function ContactForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
+      // Body is parsed defensively and never shown: the UI always uses its own generic message
+      await res.json().catch(() => null);
       setStatus(res.ok ? 'sent' : 'error');
     } catch {
       setStatus('error');
+    } finally {
+      submittingRef.current = false;
     }
   };
 
@@ -97,12 +106,22 @@ export default function ContactForm() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
-                  {/* Honeypot — hidden from people, bots tend to fill it */}
-                  <input
-                    name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true"
-                    value={form.website} onChange={handleChange}
-                    style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }}
-                  />
+                  {/* Honeypot — inert + aria-hidden keeps it out of the tab order and the
+                      accessibility tree; bots that fill every input still trip it */}
+                  <div
+                    aria-hidden="true"
+                    inert
+                    style={{
+                      position: 'absolute', width: 1, height: 1, margin: -1, padding: 0,
+                      overflow: 'hidden', clip: 'rect(0 0 0 0)', clipPath: 'inset(50%)',
+                      whiteSpace: 'nowrap', border: 0, pointerEvents: 'none',
+                    }}
+                  >
+                    <input
+                      name="website" type="text" tabIndex={-1} autoComplete="off"
+                      value={form.website} onChange={handleChange}
+                    />
+                  </div>
                   <div className={styles.formRow}>
                     <div className={styles.field}>
                       <input id="name" name="name" type="text" required placeholder=" "
@@ -119,9 +138,9 @@ export default function ContactForm() {
                   </div>
                   <div className={styles.formRow}>
                     <div className={styles.field}>
-                      <input id="phone" name="phone" type="tel" placeholder=" "
+                      <input id="phone" name="phone" type="tel" required placeholder=" "
                         value={form.phone} onChange={handleChange} />
-                      <label htmlFor="phone">Phone Number</label>
+                      <label htmlFor="phone">Phone Number *</label>
                       <span className={styles.fieldLine} />
                     </div>
                     <div className={styles.field}>
